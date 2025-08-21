@@ -36,9 +36,20 @@ const MainPage = () => {
         return (
           <div
             onClick={handleImageClick}
-            className="w-full h-96 bg-muted rounded-lg flex items-center justify-center cursor-pointer hover:bg-accent transition-colors duration-200"
+            className="w-full h-96 bg-muted rounded-lg flex items-center justify-center cursor-pointer hover:bg-accent transition-colors duration-200 overflow-hidden"
           >
-            <div className="text-center text-muted-foreground">
+            <img 
+              src="/main-image-1.png" 
+              alt="Main Image 1" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="text-center text-muted-foreground absolute hidden">
               <div className="text-4xl mb-2">🖼️</div>
               <p>Main Image 1</p>
               <p className="text-sm">(Click to switch to image 2)</p>
@@ -49,9 +60,20 @@ const MainPage = () => {
         return (
           <div
             onClick={handleImageClick}
-            className="w-full h-96 bg-secondary rounded-lg flex items-center justify-center cursor-pointer hover:bg-accent transition-colors duration-200"
+            className="w-full h-96 bg-secondary rounded-lg flex items-center justify-center cursor-pointer hover:bg-accent transition-colors duration-200 overflow-hidden relative"
           >
-            <div className="text-center text-foreground">
+            <img 
+              src="/main-image-2.png" 
+              alt="Main Image 2" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="text-center text-foreground absolute hidden">
               <div className="text-4xl mb-2">🖼️</div>
               <p>Main Image 2</p>
               <p className="text-sm">(Click to open camera)</p>

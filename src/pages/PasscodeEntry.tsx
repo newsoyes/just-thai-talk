@@ -44,7 +44,18 @@ const PasscodeEntry = () => {
         {/* Logo */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
-            <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="w-20 h-20 object-contain"
+              onError={(e) => {
+                // Fallback to original design if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center hidden">
               <span className="text-primary-foreground text-2xl font-bold">B</span>
             </div>
           </div>
