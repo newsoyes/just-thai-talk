@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const PasscodeEntry = () => {
+  const [passcode, setPasscode] = useState('');
+  const navigate = useNavigate();
+
+  const handleNumberPress = (number: string) => {
+    if (passcode.length < 6) {
+      const newPasscode = passcode + number;
+      setPasscode(newPasscode);
+      
+      // Auto navigate when 6 digits are entered
+      if (newPasscode.length === 6) {
+        setTimeout(() => {
+          navigate('/main');
+        }, 200);
+      }
+    }
+  };
+
+  const handleDelete = () => {
+    setPasscode(prev => prev.slice(0, -1));
+  };
+
+  const renderDots = () => {
+    return Array.from({ length: 6 }, (_, index) => (
+      <div
+        key={index}
+        className={`w-4 h-4 rounded-full border-2 transition-colors duration-200 ${
+          index < passcode.length
+            ? 'bg-primary border-primary'
+            : 'bg-background border-muted-foreground'
+        }`}
+      />
+    ));
+  };
+
+  const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-sm space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <h1 className="text-2xl font-semibold text-foreground">Enter Passcode</h1>
+          <p className="text-muted-foreground">Please enter your 6-digit passcode</p>
+        </div>
+
+        {/* Passcode dots */}
+        <div className="flex justify-center space-x-4">
+          {renderDots()}
+        </div>
+
+        {/* Number pad */}
+        <div className="grid grid-cols-3 gap-4 w-full">
+          {numbers.slice(0, 9).map((number) => (
+            <button
+              key={number}
+              onClick={() => handleNumberPress(number)}
+              className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-xl font-medium transition-colors duration-200 active:scale-95 transform"
+            >
+              {number}
+            </button>
+          ))}
+          
+          {/* Empty space, 0, Delete */}
+          <div></div>
+          <button
+            onClick={() => handleNumberPress('0')}
+            className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-xl font-medium transition-colors duration-200 active:scale-95 transform"
+          >
+            0
+          </button>
+          <button
+            onClick={handleDelete}
+            className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-lg font-medium transition-colors duration-200 active:scale-95 transform flex items-center justify-center"
+          >
+            ⌫
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PasscodeEntry;
