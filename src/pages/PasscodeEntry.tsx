@@ -41,10 +41,13 @@ const PasscodeEntry = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-sm space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-semibold text-foreground">Enter Passcode</h1>
-          <p className="text-muted-foreground">Please enter your 6-digit passcode</p>
+        {/* Logo */}
+        <div className="text-center space-y-4">
+          <div className="flex justify-center">
+            <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground text-2xl font-bold">B</span>
+            </div>
+          </div>
         </div>
 
         {/* Passcode dots */}
@@ -77,6 +80,13 @@ const PasscodeEntry = () => {
             className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-lg font-medium transition-colors duration-200 active:scale-95 transform flex items-center justify-center"
           >
             ⌫
+          </button>
+        </div>
+
+        {/* Forgot passcode link */}
+        <div className="text-center mt-6">
+          <button className="text-green-600 underline text-sm">
+            ลืมรหัสผ่าน
           </button>
         </div>
       </div>
