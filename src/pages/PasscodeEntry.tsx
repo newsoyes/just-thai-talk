@@ -29,7 +29,7 @@ const PasscodeEntry = () => {
         key={index}
         className={`w-4 h-4 rounded-full border-2 transition-colors duration-200 ${
           index < passcode.length
-            ? 'bg-primary border-primary'
+            ? 'bg-green-500 border-green-500'
             : 'bg-background border-muted-foreground'
         }`}
       />
@@ -61,7 +61,7 @@ const PasscodeEntry = () => {
             <button
               key={number}
               onClick={() => handleNumberPress(number)}
-              className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-xl font-medium transition-colors duration-200 active:scale-95 transform"
+              className="w-20 h-20 mx-auto border-2 border-muted-foreground hover:border-accent text-foreground rounded-full text-xl font-medium transition-colors duration-200 active:scale-95 transform"
             >
               {number}
             </button>
@@ -71,13 +71,13 @@ const PasscodeEntry = () => {
           <div></div>
           <button
             onClick={() => handleNumberPress('0')}
-            className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-xl font-medium transition-colors duration-200 active:scale-95 transform"
+            className="w-20 h-20 mx-auto border-2 border-muted-foreground hover:border-accent text-foreground rounded-full text-xl font-medium transition-colors duration-200 active:scale-95 transform"
           >
             0
           </button>
           <button
             onClick={handleDelete}
-            className="w-20 h-20 mx-auto bg-secondary hover:bg-accent text-foreground rounded-full text-lg font-medium transition-colors duration-200 active:scale-95 transform flex items-center justify-center"
+            className="w-20 h-20 mx-auto hover:bg-accent text-foreground text-lg font-medium transition-colors duration-200 active:scale-95 transform flex items-center justify-center"
           >
             ⌫
           </button>
